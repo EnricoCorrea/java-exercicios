@@ -1,4 +1,4 @@
-package main.java.mvc.Controller;
+package mvc.controller;
 
 import main.java.mvc.model.Pessoa;
 import main.java.mvc.dao.PessoaDao;
