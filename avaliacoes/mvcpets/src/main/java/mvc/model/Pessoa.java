@@ -20,5 +20,8 @@ public class Pessoa {
     public String getApelido(){
         return apelido;
     }
+    public String toString(){
+        return "Nome: " + nome + "\n Apelido: " + apelido;
+    }
     
 }

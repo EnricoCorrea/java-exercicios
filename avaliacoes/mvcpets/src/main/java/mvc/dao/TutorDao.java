@@ -1,14 +1,14 @@
 package main.java.mvc.dao;
 
-import main.java.mvc.model.Pessoa;
+import main.java.mvc.model.Tutor;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PessoaDao {
+public class TutorDao {
     private static final String ARQUIVO = "pessoas.txt";
 
-    public void adicionarPessoa(Pessoa pessoa) {
+    public void adicionarPessoa(Tutor pessoa) {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(ARQUIVO, true));
             bw.write(pessoa.getNome() + "|" + pessoa.getApelido());
@@ -19,8 +19,8 @@ public class PessoaDao {
         }
     }
 
-    public List<Pessoa> listarPessoas() {
-        List<Pessoa> pessoas = new ArrayList<>();
+    public List<Tutor> listarTutors() {
+        List<Tutor> pessoas = new ArrayList<>();
         try {
             File file = new File(ARQUIVO);
             if (!file.exists()) {
@@ -32,7 +32,7 @@ public class PessoaDao {
             while ((linha = br.readLine()) != null) {
                 String[] dados = linha.split("\\|");
                 if (dados.length == 2) {
-                    Pessoa p = new Pessoa(dados[0], dados[1]);
+                    Tutor p = new Tutor(dados[0], dados[1]);
                     pessoas.add(p);
                 }
             }
@@ -43,9 +43,9 @@ public class PessoaDao {
         return pessoas;
     }
 
-    public Pessoa buscarPorNome(String nome) {
-        List<Pessoa> pessoas = listarPessoas();
-        for (Pessoa p : pessoas) {
+    public Tutor buscarPorNome(String nome) {
+        List<Tutor> pessoas = listarPessoas();
+        for (Tutor p : pessoas) {
             if (p.getNome().equalsIgnoreCase(nome)) {
                 return p;
             }
@@ -81,9 +81,9 @@ public class PessoaDao {
     }
 
     public boolean removerPorApelido(String apelido) {
-        List<Pessoa> pessoas = listarPessoas();
-        Pessoa encontrada = null;
-        for (Pessoa p : pessoas) {
+        List<Tutor> pessoas = listarPessoas();
+        Tutor encontrada = null;
+        for (Tutor p : pessoas) {
             if (p.getApelido().equalsIgnoreCase(apelido)) {
                 encontrada = p;
                 break;
@@ -97,10 +97,10 @@ public class PessoaDao {
         return false;
     }
 
-    private void salvarListaNoArquivo(List<Pessoa> pessoas) {
+    private void salvarListaNoArquivo(List<Tutor> pessoas) {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(ARQUIVO));
-            for (Pessoa p : pessoas) {
+            for (Tutor p : pessoas) {
                 bw.write(p.getNome() + "|" + p.getApelido());
                 bw.newLine();
             }

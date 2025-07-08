@@ -1,19 +1,22 @@
 package mvc.view;
 
+import java.util.List;
 import java.util.Scanner;
 import main.java.mvc.dao.PessoaDao;
+import main.java.mvc.model.Pessoa;
 import main.java.mvc.Controller.PessoaController;
 
 
-public class Main {
+public class PessoaScan {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         PessoaController controller = new PessoaController();
-        PessoaDao dao = new PessoaDao();
+
 
         int index;
 
         do{
+            System.out.println("\n--- MENU TUTOR ---");
             System.out.printf(" [1] - Criar Pessoa \n [2] - Ler Pessoa \n [3] - Listar Pessoas \n [4] - Deletar Pessoa \n [0] - Sair \n");
             index = scan.nextInt();
             scan.nextLine();
@@ -33,11 +36,21 @@ public class Main {
                 if(opcao==1){
                     System.out.printf("\nDigite o nome: ");
                     String buscarnome = scan.nextLine();
-                    controller.buscarPessoaNome(buscarnome);
+                    Pessoa encontrounome = controller.buscarPessoaNome(buscarnome);
+                    if(encontrounome!=null){
+                        System.out.println(encontrounome);
+                    }else{
+                        System.out.println("Nome não encontrado");
+                    }
                 }else if(opcao==2){
                     System.out.printf("\nDigite o apelido: ");
                     String buscarapelido = scan.nextLine();
-                    controller.buscarPessoaApelido(buscarapelido);
+                    Pessoa encontrouapelido = controller.buscarPessoaApelido(buscarapelido);
+                    if(encontrouapelido!=null){
+                        System.out.println(encontrouapelido);
+                    }else{
+                        System.out.println("Apelido não encontrado");
+                    }
                 }else{
                     System.out.printf("\nDigite uma opção válida.");
                     break;
@@ -45,7 +58,14 @@ public class Main {
                 break;
 
                 case 3:
-                controller.mostrarPessoa();
+                List<Pessoa> lista = controller.mostrarPessoa();
+                if (lista.isEmpty()) {
+                    System.out.println("Nenhuma pessoa cadastrada.");
+                } else {
+                    for (Pessoa p : lista) {
+                        System.out.println("Nome: " + p.getNome() + " | Apelido: " + p.getApelido());
+                    }
+                }
                 break;
 
                 case 4:
