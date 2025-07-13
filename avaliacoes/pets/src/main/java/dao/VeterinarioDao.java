@@ -107,18 +107,41 @@ public class VeterinarioDao{
 
         for(Veterinario vet : vets){
             if(vet.getApelido().equalsIgnoreCase(apelido)){
-
+                encontrou = vet;
+                break;
             }
         }
+        if(encontrou!=null){
+            vets.remove(encontrou);
+            salvarListaNoArquivo(vets);
+            return true;
+        }
+        return false;
     }
 
+    public Boolean removerPorCrv(String crv){
+        List<Veterinario> vets = listarVeterinarios();
+        Veterinario encontrou = null;
 
+        for(Veterinario vet : vets){
+            if(vet.getCrv().equalsIgnoreCase(crv)){
+                encontrou = vet;
+                break;
+            }
+        }
+        if(encontrou!=null){
+            vets.remove(encontrou);
+            salvarListaNoArquivo(vets);
+            return true;
+        }
+        return false;
+    }
 
     private void salvarListaNoArquivo(List<Veterinario> veterinarios){
         try{
             BufferedWriter bw = new BufferedWriter(new FileWriter(arq));
             for(Veterinario v : veterinarios){
-                bw.write(v.getNome() + "|" + v.getApelido());
+                bw.write(v.getNome() + "|" + v.getApelido() + "|" + v.getCrv());
                 bw.newLine();
             }
             bw.close();
