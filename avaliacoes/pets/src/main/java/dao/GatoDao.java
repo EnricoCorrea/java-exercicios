@@ -9,73 +9,73 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Calopsita;
+import model.Gato;
 
-public class CalopsitaDao {
-    private static final String arq = "java-exercicios/avaliacoes/pets/src/main/java/dao/db/calopsita.txt";
+public class GatoDao {
+    private static final String arq = "java-exercicios/avaliacoes/pets/src/main/java/dao/db/gato.txt";
 
-    public void adicionarCalopsita(Calopsita calopsita) {
+    public void adicionarGato(Gato gato) {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(arq, true));
-            String texto = calopsita.getNome() + "|" + calopsita.getNascimento();
+            String texto = gato.getNome() + "|" + gato.getNascimento();
             bw.write(texto);
             bw.newLine();
             bw.close();
         } catch (IOException e) {
-            System.out.println("Erro ao adicionar calopsita: " + e.getMessage());
+            System.out.println("Erro ao adicionar gato: " + e.getMessage());
         }
     }
 
-    public List<Calopsita> listarCalopsitas() {
-        List<Calopsita> calopsitas = new ArrayList<>();
+    public List<Gato> listarGatos() {
+        List<Gato> gatos = new ArrayList<>();
         try {
             File file = new File(arq);
             if (!file.exists()) {
-                return calopsitas;
+                return gatos;
             }
             BufferedReader br = new BufferedReader(new FileReader(arq));
             String linha;
             while ((linha = br.readLine()) != null) {
                 String[] dados = linha.split("\\|");
                 if (dados.length == 2) {
-                    Calopsita c = new Calopsita(dados[0], dados[1]);
-                    calopsitas.add(c);
+                    Gato g = new Gato(dados[0], dados[1]);
+                    gatos.add(g);
                 }
             }
             br.close();
         } catch (IOException e) {
-            System.out.println("Erro ao listar calopsitas: " + e.getMessage());
+            System.out.println("Erro ao listar gatos: " + e.getMessage());
         }
-        return calopsitas;
+        return gatos;
     }
 
-    public Calopsita buscarPorNome(String nome) {
-        List<Calopsita> lista = listarCalopsitas();
-        for (Calopsita c : lista) {
-            if (c.getNome().equalsIgnoreCase(nome)) {
-                return c;
+    public Gato buscarPorNome(String nome) {
+        List<Gato> lista = listarGatos();
+        for (Gato g : lista) {
+            if (g.getNome().equalsIgnoreCase(nome)) {
+                return g;
             }
         }
         return null;
     }
 
-    public Calopsita buscarPorNascimento(String nascimento) {
-        List<Calopsita> lista = listarCalopsitas();
-        for (Calopsita c : lista) {
-            if (c.getNascimento().equalsIgnoreCase(nascimento)) {
-                return c;
+    public Gato buscarPorNascimento(String nascimento) {
+        List<Gato> lista = listarGatos();
+        for (Gato g : lista) {
+            if (g.getNascimento().equalsIgnoreCase(nascimento)) {
+                return g;
             }
         }
         return null;
     }
 
     public Boolean removerPorNome(String nome) {
-        List<Calopsita> lista = listarCalopsitas();
-        Calopsita encontrou = null;
+        List<Gato> lista = listarGatos();
+        Gato encontrou = null;
 
-        for (Calopsita c : lista) {
-            if (c.getNome().equalsIgnoreCase(nome)) {
-                encontrou = c;
+        for (Gato g : lista) {
+            if (g.getNome().equalsIgnoreCase(nome)) {
+                encontrou = g;
                 break;
             }
         }
@@ -88,12 +88,12 @@ public class CalopsitaDao {
     }
 
     public Boolean removerPorNascimento(String nascimento) {
-        List<Calopsita> lista = listarCalopsitas();
-        Calopsita encontrou = null;
+        List<Gato> lista = listarGatos();
+        Gato encontrou = null;
 
-        for (Calopsita c : lista) {
-            if (c.getNascimento().equalsIgnoreCase(nascimento)) {
-                encontrou = c;
+        for (Gato g : lista) {
+            if (g.getNascimento().equalsIgnoreCase(nascimento)) {
+                encontrou = g;
                 break;
             }
         }
@@ -105,11 +105,11 @@ public class CalopsitaDao {
         return false;
     }
 
-    private void salvarListaNoArquivo(List<Calopsita> calopsitas) {
+    private void salvarListaNoArquivo(List<Gato> gatos) {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(arq));
-            for (Calopsita c : calopsitas) {
-                bw.write(c.getNome() + "|" + c.getNascimento());
+            for (Gato g : gatos) {
+                bw.write(g.getNome() + "|" + g.getNascimento());
                 bw.newLine();
             }
             bw.close();

@@ -84,7 +84,7 @@ public class VeterinarioScan {
     }
 
     private void removerVeterinario() {
-        System.out.println("\nRemover por:\n [1] Nome\n[2] Apelido\n[3] CRMV");
+        System.out.println("\nRemover por:\n[1] Nome\n[2] Apelido\n[3] CRMV");
         int index3 = scan.nextInt();
         scan.nextLine(); 
 

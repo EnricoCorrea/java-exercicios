@@ -12,7 +12,7 @@ import java.util.List;
 import model.Cachorro;
 
 public class CachorroDao {
-    private static final String arq = "cachorro.txt";
+    private static final String arq = "java-exercicios/avaliacoes/pets/src/main/java/dao/db/cachorro.txt";
 
     public void adicionarCachorro(Cachorro cachorro) {
         try {

@@ -13,7 +13,7 @@ import java.util.List;
 
 public class VeterinarioDao{
 
-    private static final String arq = "veterinario.txt";
+    private static final String arq = "java-exercicios/avaliacoes/pets/src/main/java/dao/db/veterinario.txt";
 
     public void adicionarVeterinarios(Veterinario vet){
         try {
